@@ -62,7 +62,7 @@
                         <td>Bank Pay</td>
 
                         <td>
-                            <a href="{{route('paymant.edit')}}" class="link-info"><i class="fa-solid fa-pen-to-square fs-5 me-3"></i></a>
+                            <a href="#" class="link-info"><i class="fa-solid fa-pen-to-square fs-5 me-3"></i></a>
                             <form action="#" method="post" style="display:inline">
                                 @csrf
                                 @method('delete')

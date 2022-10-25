@@ -8,9 +8,9 @@
             @csrf
             <h1>{{__('New Payment')}}</h1>
             <form class="form-light">
+                <x-layouts.input name="date" type="date" id="date" :value="old('date')" />
+                <div class="d-flex mt-3">
 
-                <div class="d-flex">
-                    <x-layouts.input name="date" type="date" id="date" :value="old('date')" />
                     <div class="col-6">
                         @php
                         $dropItems=['Dhaka Foam','Bengal Foam','Apex Foam','Sawdagor Chemicals']
@@ -21,15 +21,9 @@
                         <x-layouts.input name="totalDue" class="mt-2" title="Total Due" type="text" id="totalDue" :value="old('totalDue')" />
                     </div>
                 </div>
-                <div class="d-flex">
-                    <x-layouts.input name="date" type="date" id="date" :value="old('date')" />
-                    <div class="col-6">
-                        <x-layouts.input name="amount" class="mt-2" title="Amount" type="text" id="amount" :value="old('amount')" />
-                    </div>
-                    <div class="col-6">
-                        <x-layouts.input name="remainder" class="mt-2" title="Remainder" type="text" id="remainder" :value="old('remainder')" />
-                    </div>
-                </div>
+                <x-layouts.input name="amount" class="mt-2" title="Amount" type="text" id="amount" :value="old('amount')" />
+                <x-layouts.input name="remainder" class="mt-2" title="Remainder" type="text" id="remainder" :value="old('remainder')" />
+
                 <x-layouts.input name="method" class="mt-2" title="Payment Method" type="text" id="method" :value="old('method')" />
 
 
