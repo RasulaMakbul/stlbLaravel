@@ -89,18 +89,18 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">
+                            <a class="nav-link" aria-current="page" href="{{route('sales.index')}}">
                                 <span data-feather="list"></span>
-                                {{__('Order')}}
+                                {{__('Sales')}}
                             </a>
                         </li>
 
 
 
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{route('payment.index')}}">
                                 <span data-feather="users"></span>
-                                {{__('Users')}}
+                                {{__('Payments')}}
                             </a>
                         </li>
                         <li class="nav-item">
@@ -164,6 +164,7 @@
     <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
     <script src="{{asset('assets')}}/js/dashboard.js"></script>
+    <script src="{{asset('assets')}}/js/app.js"></script>
 
 </body>
 

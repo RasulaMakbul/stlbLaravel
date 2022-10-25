@@ -27,6 +27,8 @@
                         <th scope="col">{{__('name')}}</th>
                         <th scope="col">{{__('Address')}}</th>
                         <th scope="col">{{__('Phone')}}</th>
+                        <th scope="col">{{__('Total(Tk)')}}</th>
+                        <th scope="col">{{__('Due(Tk)')}}</th>
 
                         <th scope="col">{{__('Action')}}</th>
                     </tr>
@@ -38,10 +40,13 @@
                         <td>{{ $buyer->name }}</td>
                         <td>{{ $buyer->address }}</td>
                         <td>{{ $buyer->phone }}</td>
+                        <td>24,88,000</td>
+                        <td>5,72,980</td>
 
 
 
                         <td>
+                            <a href="{{route('buyer.show',$buyer->id)}}" class="link-info"><i class="fa-solid fa-eye fs-5 me-3"></i></a>
                             <a href="{{route('buyer.edit',$buyer->id)}}" class="link-info"><i class="fa-solid fa-pen-to-square fs-5 me-3"></i></a>
                             <form action="{{ route('buyer.destroy', $buyer->id) }}" method="post" style="display:inline">
                                 @csrf

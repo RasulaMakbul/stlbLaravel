@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Sale;
+use App\Models\Payment;
 use Illuminate\Http\Request;
 
-class SaleController extends Controller
+class PaymentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class SaleController extends Controller
      */
     public function index()
     {
-        return view('sales.index');
+        return view('payments.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class SaleController extends Controller
      */
     public function create()
     {
-        return view('sales.create');
+        return view('payments.create');
     }
 
     /**
@@ -41,10 +41,10 @@ class SaleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Sale  $sale
+     * @param  \App\Models\Payment  $payment
      * @return \Illuminate\Http\Response
      */
-    public function show(Sale $sale)
+    public function show(Payment $payment)
     {
         //
     }
@@ -52,22 +52,22 @@ class SaleController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Sale  $sale
+     * @param  \App\Models\Payment  $payment
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit(Payment $payment)
     {
-        return view('sales.edit');
+        return view('payments.edit');
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Sale  $sale
+     * @param  \App\Models\Payment  $payment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Sale $sale)
+    public function update(Request $request, Payment $payment)
     {
         //
     }
@@ -75,10 +75,10 @@ class SaleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Sale  $sale
+     * @param  \App\Models\Payment  $payment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Sale $sale)
+    public function destroy(Payment $payment)
     {
         //
     }

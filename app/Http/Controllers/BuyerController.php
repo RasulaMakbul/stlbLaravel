@@ -59,7 +59,7 @@ class BuyerController extends Controller
      */
     public function show(Buyer $buyer)
     {
-        //
+        return view('buyer.show', compact('buyer'));
     }
 
     /**
