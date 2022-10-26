@@ -42,9 +42,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/sales/edit', [SaleController::class, 'edit'])->name('sales.edit');
 
 
-    Route::get('/payment/index', [PaymentController::class, 'index'])->name('payment.index');
-    Route::get('/payment/create', [PaymentController::class, 'create'])->name('payment.create');
-    Route::get('/payment/edit', [PaymentController::class, 'edit'])->name('payment.edit');
+    // Route::get('/payment/index', [PaymentController::class, 'index'])->name('payment.index');
+    // Route::get('/payment/create', [PaymentController::class, 'create'])->name('payment.create');
+    // Route::post('/payment/store', [PaymentController::class, 'store'])->name('payment.store');
+    // Route::get('/payment/edit', [PaymentController::class, 'edit'])->name('payment.edit');
+    // Route::get('/payment/delete', [PaymentController::class, 'destroy'])->name('payment.delete');
 
-    //Route::resource('payment', PaymentController::class);
+    Route::get('/payment/trash', [PaymentController::class, 'trash'])->name('payment.trash');
+    Route::get('/payment/{id}/restore', [PaymentController::class, 'restore'])->name('payment.restore');
+    Route::delete('/payment/{id}/delete', [PaymentController::class, 'delete'])->name('payment.delete');
+    Route::resource('payment', PaymentController::class);
 });
