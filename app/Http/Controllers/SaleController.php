@@ -40,7 +40,7 @@ class SaleController extends Controller
      */
     public function store(SaleRequest $request)
     {
-        #dd($request);
+        dd($request->unitPrice);
         $requestData = ([
             'buyer_id' => $request->buyer,
             'date' => $request->date,
