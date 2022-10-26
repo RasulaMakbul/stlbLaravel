@@ -3,13 +3,14 @@
             {{__('trash')}}
         </x-slot:title>
 
-        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <div
+            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h1 class="h2">{{__('Trash')}}</h1>
             <div class="btn-toolbar mb-2 mb-md-0">
 
-                <a type="button" href="{{route('buyer.index')}}" class="btn btn-sm btn-outline-secondary">
+                <a type="button" href="{{route('product.index')}}" class="btn btn-sm btn-outline-secondary">
                     <i class="fa-solid fa-list"></i>
-                    {{__('Buyers')}}
+                    {{__('Products')}}
                 </a>
             </div>
         </div>
@@ -19,28 +20,36 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
+                        <th scope="col">#</th>
                         <th scope="col">{{__('name')}}</th>
-                        <th scope="col">{{__('address')}}</th>
-                        <th scope="col">{{__('phone')}}</th>
-
+                        <th scope="col">{{__('Code')}}</th>
+                        <th scope="col">{{__('Origin')}}</th>
+                        <th scope="col">{{__('Stock')}}</th>
+                        <th scope="col">{{__('Costing')}}</th>
+                        <th scope="col">{{__('Price')}}</th>
                         <th scope="col">{{__('Action')}}</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($buyers as $buyer)
+                    @foreach($products as $product)
                     <tr>
                         <td scope="row">{{ $loop->iteration }}</td>
-                        <td>{{ $buyer->name }}</td>
-                        <td>{{ $buyer->address }}</td>
-                        <td>{{ $buyer->phone }}</td>
-
-
+                        <td>{{ $product->name }}</td>
+                        <td>{{ $product->code }}</td>
+                        <td>{{ $product->origin }}</td>
+                        <td>{{ $product->stock }}</td>
+                        <td>{{ $product->costing }}</td>
+                        <td>{{ $product->price }}</td>
                         <td>
-                            <a href="{{route('buyer.restore',$buyer->id)}}" class="link-info"><i class="fa-solid fa-arrow-rotate-left fs-5"></i></a>
-                            <form action="{{ route('buyer.delete', $buyer->id) }}" method="post" style="display:inline">
+                            <a href="{{route('product.restore',$product->id)}}" class="link-info"><i
+                                    class="fa-solid fa-arrow-rotate-left fs-5"></i></a>
+                            <form action="{{ route('product.delete', $product->id) }}" method="post"
+                                style="display:inline">
                                 @csrf
                                 @method('delete')
-                                <button class="btn btn-sm link-danger" onclick="return confirm('Are you sure want to delete')" title="Permanent Delete"><i class="fa-solid fa-trash fs-5"></i></button>
+                                <button class="btn btn-sm link-danger"
+                                    onclick="return confirm('Are you sure want to delete')" title="Permanent Delete"><i
+                                        class="fa-solid fa-trash fs-5"></i></button>
                             </form>
 
                         </td>
