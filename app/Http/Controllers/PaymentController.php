@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Payment;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller
@@ -14,7 +15,8 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        return view('payments.index');
+        $payment = Payment::all();
+        return view ('payments.index', compact('payment'));
     }
 
     /**
@@ -35,7 +37,15 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+            $rg = new Payment();
+            $rg->date = $request->date;
+            $rg->buyer_id =$request->buyer_id;
+            $rg->totalDue =$request->totalDue;
+            $rg->amount =$request->amount;
+            $rg->remainder =$request->remainder;
+            $rg->method =$request->method;
+            $rg->save();
+        return redirect()->route('payment.index');
     }
 
     /**
@@ -57,7 +67,7 @@ class PaymentController extends Controller
      */
     public function edit(Payment $payment)
     {
-        return view('payments.edit');
+        return view('payments.edit',compact('payment'));
     }
 
     /**
@@ -69,7 +79,16 @@ class PaymentController extends Controller
      */
     public function update(Request $request, Payment $payment)
     {
-        //
+            $requestData = ([
+            'date' => $request->name,
+            'buyer' => $request->buyer,
+            'total_due' => $request->total_due,
+            'amount' => $request->amount,
+            'remainder' => $request->remainder,
+            'method' => $request->method
+        ]);
+        $payment->update($requestData);
+        return redirect()->route('payments.index');
     }
 
     /**
@@ -80,6 +99,28 @@ class PaymentController extends Controller
      */
     public function destroy(Payment $payment)
     {
-        //
+        $payment->delete();
+        return redirect()->route('payments.index');
+    }
+    public function trash()
+    {
+        $payments = Payment::onlyTrashed()->get();
+        return view('payments.trash', compact('payments'));
+    }
+    public function restore($id)
+    {
+        $payments = Payment::onlyTrashed()->find($id);
+        $payments->restore();
+        return redirect()->route('payments.trash');
+    }
+    public function delete($id)
+    {
+        try {
+            $payments = Payment::onlyTrashed()->find($id);
+            $payments->forceDelete();
+            return redirect()->route('payments.trash')->withMessage('Successfully Deleted');
+        } catch (QueryException $e) {
+            return redirect()->back()->withErrors($e->getMessage());
+        }
     }
 }
