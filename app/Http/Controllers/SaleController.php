@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SaleRequest;
+use App\Models\Buyer;
+use App\Models\Product;
 use App\Models\Sale;
 use Illuminate\Http\Request;
 
@@ -24,7 +27,9 @@ class SaleController extends Controller
      */
     public function create()
     {
-        return view('sales.create');
+        $buyers = Buyer::pluck('name', 'id');
+        $products = Product::pluck('name', 'id');
+        return view('sales.create', compact('buyers', 'products'));
     }
 
     /**
@@ -33,9 +38,18 @@ class SaleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SaleRequest $request)
     {
-        //
+        #dd($request);
+        $requestData = ([
+            'buyer_id' => $request->buyer,
+            'date' => $request->date,
+            'address' => $request->address,
+            'phone' => $request->phone,
+            'subTotal' => $request->subTotal,
+        ]);
+        $sale = Sale::create($requestData);
+        $sale->product()->attach([$request->productName, $request->quantity, $request->unitPrice, $request->price]);
     }
 
     /**

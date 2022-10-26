@@ -37,9 +37,8 @@ Route::middleware('auth')->group(function () {
     // Route::get('product/pdf', [ProductController::class, 'downloadPdf'])->name('product.pdf');
     //Route::resource('sales', SaleController::class);
 
-    Route::get('/sales/index', [SaleController::class, 'index'])->name('sales.index');
-    Route::get('/sales/create', [SaleController::class, 'create'])->name('sales.create');
-    Route::get('/sales/edit', [SaleController::class, 'edit'])->name('sales.edit');
+
+    Route::resource('sales', SaleController::class);
 
 
     // Route::get('/payment/index', [PaymentController::class, 'index'])->name('payment.index');

@@ -16,7 +16,7 @@ class PaymentController extends Controller
     public function index()
     {
         $payment = Payment::all();
-        return view ('payments.index', compact('payment'));
+        return view('payments.index', compact('payment'));
     }
 
     /**
@@ -37,14 +37,14 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-            $rg = new Payment();
-            $rg->date = $request->date;
-            $rg->buyer_id =$request->buyer_id;
-            $rg->totalDue =$request->totalDue;
-            $rg->amount =$request->amount;
-            $rg->remainder =$request->remainder;
-            $rg->method =$request->method;
-            $rg->save();
+        $rg = new Payment();
+        $rg->date = $request->date;
+        $rg->buyer = $request->buyer;
+        $rg->totalDue = $request->totalDue;
+        $rg->amount = $request->amount;
+        $rg->remainder = $request->remainder;
+        $rg->method = $request->method;
+        $rg->save();
         return redirect()->route('payment.index');
     }
 
@@ -67,7 +67,7 @@ class PaymentController extends Controller
      */
     public function edit(Payment $payment)
     {
-        return view('payments.edit',compact('payment'));
+        return view('payments.edit', compact('payment'));
     }
 
     /**
@@ -79,7 +79,7 @@ class PaymentController extends Controller
      */
     public function update(Request $request, Payment $payment)
     {
-            $requestData = ([
+        $requestData = ([
             'date' => $request->name,
             'buyer' => $request->buyer,
             'total_due' => $request->total_due,

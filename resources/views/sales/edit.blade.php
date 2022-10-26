@@ -1,12 +1,12 @@
     <x-admins.master>
         <x-slot:title>
-            {{__('Edit Sale')}}
+            {{__('Edit Invoice')}}
         </x-slot:title>
         <x-layouts.errors />
 
         <form action="#" method="POST" enctype="multipart/form-data">
             @csrf
-            <h1>{{__('Edit Sale')}}</h1>
+            <h1>{{__('Edit Invoice')}}</h1>
             <form class="form-light">
                 <div class="d-flex">
                     <div class="col-6">

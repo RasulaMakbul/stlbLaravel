@@ -27,7 +27,8 @@
                         <th scope="col">{{__('name')}}</th>
                         <th scope="col">{{__('Address')}}</th>
                         <th scope="col">{{__('Phone')}}</th>
-                        <th scope="col">{{__('Total(Tk)')}}</th>
+                        <th scope="col">{{__('Balance(Tk)')}}</th>
+                        <th scope="col">{{__('Paid(Tk)')}}</th>
                         <th scope="col">{{__('Due(Tk)')}}</th>
 
                         <th scope="col">{{__('Action')}}</th>
@@ -40,10 +41,9 @@
                         <td>{{ $buyer->name }}</td>
                         <td>{{ $buyer->address }}</td>
                         <td>{{ $buyer->phone }}</td>
-                        <td>24,88,000</td>
-                        <td>5,72,980</td>
-
-
+                        <td>{{ $buyer->totalBalance }}</td>
+                        <td>{{ $buyer->paid }}</td>
+                        <td>{{ $buyer->due }}</td>
 
                         <td>
                             <a href="{{route('buyer.show',$buyer->id)}}" class="link-info"><i class="fa-solid fa-eye fs-5 me-3"></i></a>

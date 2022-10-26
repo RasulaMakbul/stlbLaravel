@@ -1,19 +1,16 @@
     <x-admins.master>
         <x-slot:title>
-            {{__('New Sale')}}
+            {{__('New Invoice')}}
         </x-slot:title>
         <x-layouts.errors />
 
-        <form action="#" method="POST" enctype="multipart/form-data">
+        <form action="{{route('sales.store')}}" method="POST" enctype="multipart/form-data">
             @csrf
-            <h1>{{__('New Sale')}}</h1>
+            <h1>{{__('New Invoice')}}</h1>
             <form class="form-light">
                 <div class="d-flex">
                     <div class="col-6">
-                        @php
-                        $dropItems=['Dhaka Foam','Bengal Foam','Apex Foam','Sawdagor Chemicals']
-                        @endphp
-                        <x-layouts.dropdowns name="buyer_id" title="Buyer" id="buyer" :dropItems="$dropItems" :setItem="old('buyer_id')" option1="Select Buyer Name" />
+                        <x-layouts.dropdowns name="buyer" title="Buyer" id="buyer" :dropItems="$buyers" :setItem="old('buyer')" option1="Select Buyer Name" />
                     </div>
                     <div class="col-6">
                         <x-layouts.input name="date" type="date" id="date" :value="old('date')" />
@@ -22,44 +19,41 @@
                 <x-layouts.input name="address" class="mt-2" title="Address" type="text" id="address" :value="old('address')" />
                 <x-layouts.input name="phone" class="mt-2" title="Phone" type="text" id="phone" :value="old('phone')" />
                 <hr>
-                <div id="product-holder">
-                    <x-layouts.addSale />
-                    <x-layouts.addSale />
-                    <x-layouts.addSale />
-                    <x-layouts.addSale />
-                    <div class="d-flex" id="addingOptions"></div>
-                    <div class="col-sm-1 mb-3" id="controls">
+                <div>
+                    <div id="multipleEntry">
+                        <div class="d-flex">
+                            <div class="col-3">
 
-                        <button type="button" id="addBtnTry" class="btn btn-secondary" onclick="addNewProduct();"><i class="fa-solid fa-plus"></i></button>
+                                <x-layouts.dropdowns name="productName[]" title="Product" class="mt-2" id="productName" :dropItems="$products" :setItem="old('productName')" option1="Select Product" />
+                            </div>
+                            <div class="col-3">
+                                <x-layouts.input name="quantity[]" title="Quantity" type="number" id="quantity" :value="old('quantity')" />
+                            </div>
+                            <div class="col-3">
+                                <x-layouts.input name="unitPrice[]" title="Unit Price" type="number" id="unitPrice" :value="old('unitPrice')" />
+                            </div>
+                            <div class="col-3">
+                                <x-layouts.input name="price[]" title="Price" type="number" id="price" :value="old('price')" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-1 mb-3" id="controls">
+                        <button class="btn btn-primary addNewBtn" type="button"><i class="fa-solid fa-plus"></i></button>
+                        <!-- <button type="button" id="addBtnTry" class="btn btn-secondary" onclick="addNewProduct();"></button> -->
                     </div>
 
-                    <x-layouts.input name="subTotalPrice" class="mt-2" title="Sub Total Price" type="number" id="subTotalPrice" :value="old('subTotalPrice')" />
+                    <x-layouts.input name="subTotal" class="mt-2" title="Sub Total Price" type="number" id="subTotal" :value="old('subTotal')" />
 
 
 
-
-                </div>
-
-                <div class="form-group col-8 m-3 mb-5">
-                    <button type="submit" class="btn btn-outline-info  m-3">{{__('Save')}}</button>
-                    <a type="button" href="{{route('sales.index')}}" class="btn btn-outline-secondary">{{__('Back')}}</a>
-                </div>
+                    <div class="form-group col-8 m-3 mb-5">
+                        <button type="submit" class="btn btn-outline-info  m-3">{{__('Save')}}</button>
+                        <a type="button" href="{{route('sales.index')}}" class="btn btn-outline-secondary">{{__('Back')}}</a>
+                    </div>
 
 
             </form>
             <script>
-                var addingOptions = document.getElementById('addingOptions');
-                var addBtnTry = document.getElementById('addBtnTry');
 
-                function addNewProduct() {
-                    console.log('clicked');
-                    var newFIeld = document.createElement('<x-layouts.addSale />');
-                    // newFIeld.setAttribute('name', 'quantity');
-                    // newFIeld.setAttribute('title', 'Quantity');
-                    // newFIeld.setAttribute('type', 'number');
-                    // newFIeld.setAttribute('id', 'quantity');
-                    // newFIeld.setAttribute(':value', "old('quantity'");
-                    addingOptions.appendChild(newFIeld);
-                }
             </script>
     </x-admins.master>

@@ -91,7 +91,7 @@
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="{{route('sales.index')}}">
                                 <span data-feather="list"></span>
-                                {{__('Sales')}}
+                                {{__('Invoice')}}
                             </a>
                         </li>
 
