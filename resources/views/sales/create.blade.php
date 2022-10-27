@@ -24,7 +24,7 @@
                         <div class="d-flex">
                             <div class="col-3">
 
-                                <x-layouts.dropdowns name="productName[]" title="Product" class="mt-2" id="productName" :dropItems="$products" :setItem="old('productName')" option1="Select Product" />
+                                <x-layouts.dropdowns name="product_id[]" title="Product" class="mt-2" id="productName" :dropItems="$products" :setItem="old('productName')" option1="Select Product" />
                             </div>
                             <div class="col-3">
                                 <x-layouts.input name="quantity[]" title="Quantity" type="number" id="quantity" :value="old('quantity')" />

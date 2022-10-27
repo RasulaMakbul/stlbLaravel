@@ -10,4 +10,8 @@ class Product extends Model
 {
     use HasFactory, SoftDeletes;
     protected $guarded = [];
+    public function sales()
+    {
+        return $this->belongsToMany(Sale::class);
+    }
 }

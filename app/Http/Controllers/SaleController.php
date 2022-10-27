@@ -17,7 +17,8 @@ class SaleController extends Controller
      */
     public function index()
     {
-        return view('sales.index');
+        $sales = Sale::latest()->paginate(15);
+        return view('sales.index', compact('sales'));
     }
 
     /**
@@ -40,7 +41,7 @@ class SaleController extends Controller
      */
     public function store(SaleRequest $request)
     {
-        dd($request->unitPrice);
+        #dd($request->unitPrice);
         $requestData = ([
             'buyer_id' => $request->buyer,
             'date' => $request->date,
@@ -49,7 +50,20 @@ class SaleController extends Controller
             'subTotal' => $request->subTotal,
         ]);
         $sale = Sale::create($requestData);
-        $sale->product()->attach([$request->productName, $request->quantity, $request->unitPrice, $request->price]);
+        #$sale->product()->attach([$request->productName, $request->quantity, $request->unitPrice, $request->price]);
+
+        $saleData = [];
+        for ($i = 0; $i < count($request->product_id); $i++) {
+            $saleData[$request->product_id[$i]] = [
+                'quantity' => $request->quantity[$i],
+                'unitPrice' => $request->unitPrice[$i],
+                'price' => $request->price[$i],
+            ];
+        }
+
+        $sale->products()->attach($saleData);
+
+        return redirect()->route('sales.index');
     }
 
     /**

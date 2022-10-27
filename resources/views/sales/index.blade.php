@@ -33,25 +33,24 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach($sales as $sale)
                     <tr>
-                        <td scope="row">1</td>
-                        <td>Today</td>
-                        <td>Dhaka Foam</td>
+                        <td scope="row">{{$loop->iteration}}</td>
+                        <td>{{$sale->date}}</td>
+                        <td>{{$sale->buyer->name}}</td>
                         <td>
+                            @foreach($sale->products as $product)
+                            @dd($product);
                             <table>
                                 <tr>
-                                    <td>Red</td>
-                                    <td>5</td>
-                                </tr>
-                                <tr>
-                                    <td>blue</td>
-                                    <td>5</td>
-                                </tr>
-                                <tr>
-                                    <td>green</td>
-                                    <td>5</td>
+                                    <td>{{$product->name}}</td>
+                                    <td>{{$product->quantity}}</td>
+                                    <td>{{$product->unitPrice}}</td>
+                                    <td>{{$product->price}}</td>
+
                                 </tr>
                             </table>
+                            @endforeach
                         </td>
                         <td>10,000</td>
 
@@ -59,7 +58,7 @@
 
                         <td>
                             <a href="#" class="link-info"><i class="fa-solid fa-eye fs-5 me-3"></i></a>
-                            <a href="{{route('sales.edit')}}" class="link-info"><i class="fa-solid fa-pen-to-square fs-5 me-3"></i></a>
+                            <a href="#" class="link-info"><i class="fa-solid fa-pen-to-square fs-5 me-3"></i></a>
                             <form action="#" method="post" style="display:inline">
                                 @csrf
                                 @method('delete')
@@ -67,109 +66,8 @@
                             </form>
                         </td>
                     </tr>
-                    <tr>
-                        <td scope="row">1</td>
-                        <td>Today</td>
-                        <td>Dhaka Foam</td>
-                        <td>
-                            <table>
-                                <tr>
-                                    <td>Red</td>
-                                    <td>5</td>
-                                </tr>
-                                <tr>
-                                    <td>blue</td>
-                                    <td>5</td>
-                                </tr>
-                                <tr>
-                                    <td>green</td>
-                                    <td>5</td>
-                                </tr>
-                            </table>
-                        </td>
-                        <td>10,000</td>
+                    @endforeach
 
-
-
-                        <td>
-                            <a href="#" class="link-info"><i class="fa-solid fa-eye fs-5 me-3"></i></a>
-                            <a href="{{route('sales.edit')}}" class="link-info"><i class="fa-solid fa-pen-to-square fs-5 me-3"></i></a>
-
-                            <form action="#" method="post" style="display:inline">
-                                @csrf
-                                @method('delete')
-                                <button class="btn btn-sm link-danger" onclick="return confirm('Are you sure want to delete')"><i class="fa-solid fa-trash fs-5"></i></button>
-                            </form>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td scope="row">1</td>
-                        <td>Today</td>
-                        <td>Dhaka Foam</td>
-                        <td>
-                            <table>
-                                <tr>
-                                    <td>Red</td>
-                                    <td>5</td>
-                                </tr>
-                                <tr>
-                                    <td>blue</td>
-                                    <td>5</td>
-                                </tr>
-                                <tr>
-                                    <td>green</td>
-                                    <td>5</td>
-                                </tr>
-                            </table>
-                        </td>
-                        <td>10,000</td>
-
-
-
-                        <td>
-                            <a href="#" class="link-info"><i class="fa-solid fa-eye fs-5 me-3"></i></a>
-                            <a href="{{route('sales.edit')}}" class="link-info"><i class="fa-solid fa-pen-to-square fs-5 me-3"></i></a>
-                            <form action="#" method="post" style="display:inline">
-                                @csrf
-                                @method('delete')
-                                <button class="btn btn-sm link-danger" onclick="return confirm('Are you sure want to delete')"><i class="fa-solid fa-trash fs-5"></i></button>
-                            </form>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td scope="row">1</td>
-                        <td>Today</td>
-                        <td>Dhaka Foam</td>
-                        <td>
-                            <table>
-                                <tr>
-                                    <td>Red</td>
-                                    <td>5</td>
-                                </tr>
-                                <tr>
-                                    <td>blue</td>
-                                    <td>5</td>
-                                </tr>
-                                <tr>
-                                    <td>green</td>
-                                    <td>5</td>
-                                </tr>
-                            </table>
-                        </td>
-                        <td>10,000</td>
-
-
-
-                        <td>
-                            <a href="#" class="link-info"><i class="fa-solid fa-eye fs-5 me-3"></i></a>
-                            <a href="{{route('sales.edit')}}" class="link-info"><i class="fa-solid fa-pen-to-square fs-5 me-3"></i></a>
-                            <form action="#" method="post" style="display:inline">
-                                @csrf
-                                @method('delete')
-                                <button class="btn btn-sm link-danger" onclick="return confirm('Are you sure want to delete')"><i class="fa-solid fa-trash fs-5"></i></button>
-                            </form>
-                        </td>
-                    </tr>
 
 
 

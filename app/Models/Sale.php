@@ -15,7 +15,7 @@ class Sale extends Model
     {
         return $this->belongsTo(Buyer::class);
     }
-    public function product()
+    public function products()
     {
         return $this->belongsToMany(Product::class);
     }
