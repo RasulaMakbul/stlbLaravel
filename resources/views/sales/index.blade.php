@@ -20,7 +20,7 @@
         </div>
 
         <div class="container-fluid pt-4 px-4">
-            <table class="table table-dark table-striped">
+            <table class="table table-light table-striped">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -35,30 +35,46 @@
                 <tbody>
                     @foreach($sales as $sale)
                     <tr>
-                        <td scope="row">{{$loop->iteration}}</td>
-                        <td>{{$sale->date}}</td>
-                        <td>{{$sale->buyer->name}}</td>
+                        <td scope="row" class="align-middle">{{$loop->iteration}}</td>
+                        <td class="align-middle">{{$sale->date}}</td>
+                        <td class="align-middle">{{$sale->buyer->name}}</td>
                         <td>
-                            @foreach($sale->products as $product)
-                            @dd($product);
-                            <table>
-                                <tr>
-                                    <td>{{$product->name}}</td>
-                                    <td>{{$product->quantity}}</td>
-                                    <td>{{$product->unitPrice}}</td>
-                                    <td>{{$product->price}}</td>
 
-                                </tr>
+
+                            <table class="table table-light table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">{{__('product')}}</th>
+                                        <th scope="col">{{__('qty')}}</th>
+                                        <th scope="col">{{__('untPrice')}}</th>
+                                        <th scope="col">{{__('Total Price')}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($sale->products as $product)
+                                    <tr>
+                                        <td scope="row">{{$loop->iteration}}</td>
+                                        <td>{{$product->name}}</td>
+                                        <td>{{$product->pivot->quantity}}</td>
+                                        <td>{{$product->pivot->unitPrice}}</td>
+                                        <td>{{$product->pivot->price}}</td>
+
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+
+
                             </table>
-                            @endforeach
+
                         </td>
-                        <td>10,000</td>
+                        <td class="align-middle">{{$sale->subTotal}}</td>
 
 
 
-                        <td>
+                        <td class="align-middle">
                             <a href="#" class="link-info"><i class="fa-solid fa-eye fs-5 me-3"></i></a>
-                            <a href="#" class="link-info"><i class="fa-solid fa-pen-to-square fs-5 me-3"></i></a>
+                            <a href="{{route('sales.edit',$sale->id)}}" class="link-info"><i class="fa-solid fa-pen-to-square fs-5 me-3"></i></a>
                             <form action="#" method="post" style="display:inline">
                                 @csrf
                                 @method('delete')

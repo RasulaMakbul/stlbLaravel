@@ -83,9 +83,11 @@ class SaleController extends Controller
      * @param  \App\Models\Sale  $sale
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit(Sale $sale)
     {
-        return view('sales.edit');
+        $buyers = Buyer::pluck('name', 'id');
+        $products = Product::pluck('name', 'id');
+        return view('sales.edit', compact('sale', 'buyers', 'products'));
     }
 
     /**
@@ -97,7 +99,32 @@ class SaleController extends Controller
      */
     public function update(Request $request, Sale $sale)
     {
-        //
+        #dd($request);
+        $requestData = ([
+            'buyer_id' => $request->buyer,
+            'date' => $request->date,
+            'address' => $request->address,
+            'phone' => $request->phone,
+            'subTotal' => $request->subTotal,
+        ]);
+        $sale->update($requestData);
+
+        #$sale->product()->attach([$request->productName, $request->quantity, $request->unitPrice, $request->price]);
+
+        $saleData = [];
+        for ($i = 0; $i < count($request->product_id); $i++) {
+            $saleData[$request->product_id[$i]] = [
+                'quantity' => $request->quantity[$i],
+                'unitPrice' => $request->unitPrice[$i],
+                'price' => $request->price[$i],
+            ];
+        }
+
+
+        $sale->products()->sync($saleData);
+
+
+        return redirect()->route('sales.index');
     }
 
     /**
