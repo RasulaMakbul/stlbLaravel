@@ -74,7 +74,9 @@ class SaleController extends Controller
      */
     public function show(Sale $sale)
     {
-        //
+        #dd($sale);
+        //$sales = Sale::latest()->paginate(15);
+        return view('sales.show', compact('sale'));
     }
 
     /**

@@ -73,7 +73,7 @@
 
 
                         <td class="align-middle">
-                            <a href="#" class="link-info"><i class="fa-solid fa-eye fs-5 me-3"></i></a>
+                            <a href="{{route('sales.show',$sale->id)}}" class="link-info"><i class="fa-solid fa-eye fs-5 me-3"></i></a>
                             <a href="{{route('sales.edit',$sale->id)}}" class="link-info"><i class="fa-solid fa-pen-to-square fs-5 me-3"></i></a>
                             <form action="#" method="post" style="display:inline">
                                 @csrf
