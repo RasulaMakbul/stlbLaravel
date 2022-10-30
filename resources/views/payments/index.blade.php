@@ -43,8 +43,8 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $payment->date }}</td>
-                        <td>{{ $payment->buyer_id }}</td>
-                        <td>{{ $payment->totalDue }}</td>
+                        <td>{{ $payment->buyer->name }}</td>
+                        <td>{{ $payment->total_due }}</td>
                         <td>{{ $payment->amount }}</td>
                         <td>{{ $payment->remainder }}</td>
                         <td>{{ $payment->method }}</td>

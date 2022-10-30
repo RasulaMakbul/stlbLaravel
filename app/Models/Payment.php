@@ -8,5 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Payment extends Model
 {
     use HasFactory;
-    protected $fillable = ['_token'];
+    protected $guarded = [];
+    public function buyer()
+    {
+        return $this->belongsTo(Buyer::class);
+    }
 }

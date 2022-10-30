@@ -16,12 +16,14 @@ return new class extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->date('date');
-            $table->string('buyer');
+            $table->unsignedBigInteger('buyer_id')->nullable();
             $table->integer('total_due')->nullable();
             $table->integer('amount');
             $table->integer('remainder');
             $table->string('method')->nullable();
             $table->timestamps();
+
+            $table->foreign('buyer_id')->references('id')->on('buyers')->onDelete('cascade');
         });
     }
 

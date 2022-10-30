@@ -1,15 +1,16 @@
     <x-admins.master>
         <x-slot:title>
-            {{__($buyer->name)}}
+            {{ __($buyer->name) }}
         </x-slot:title>
 
-        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">{{__($buyer->name)}}</h1>
+        <div
+            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">{{ __($buyer->name) }}</h1>
             <div class="btn-toolbar mb-2 mb-md-0">
 
-                <a type="button" href="{{route('buyer.index')}}" class="btn btn-sm btn-outline-secondary">
+                <a type="button" href="{{ route('buyer.index') }}" class="btn btn-sm btn-outline-secondary">
                     <i class="fa-solid fa-list"></i>
-                    {{__('Buyers')}}
+                    {{ __('Buyers') }}
                 </a>
             </div>
         </div>
@@ -22,7 +23,7 @@
                             <h5>Buyer Name</h5>
                         </div>
                         <div class="col-md-9 text-secondary">
-                            {{$buyer->name}}
+                            {{ $payment->buyer->name }}
                         </div>
                     </div>
                     <div class="row">
@@ -30,7 +31,7 @@
                             <h5>Address</h5>
                         </div>
                         <div class="col-md-9 text-secondary">
-                            {{$buyer->address}}
+                            {{ $buyer->address }}
                         </div>
                     </div>
                     <div class="row">
@@ -38,7 +39,7 @@
                             <h5> Contact No</h5>
                         </div>
                         <div class="col-md-9 text-secondary">
-                            {{$buyer->phone}}
+                            {{ $buyer->phone }}
                         </div>
                     </div>
                     <div class="row">
@@ -68,9 +69,9 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">{{__('Date')}}</th>
-                        <th scope="col">{{__('Sales')}}</th>
-                        <th scope="col">{{__('Total Price')}}</th>
+                        <th scope="col">{{ __('Date') }}</th>
+                        <th scope="col">{{ __('Sales') }}</th>
+                        <th scope="col">{{ __('Total Price') }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -155,9 +156,9 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">{{__('Date')}}</th>
-                        <th scope="col">{{__('Amount')}}</th>
-                        <th scope="col">{{__('Method')}}</th>
+                        <th scope="col">{{ __('Date') }}</th>
+                        <th scope="col">{{ __('Amount') }}</th>
+                        <th scope="col">{{ __('Method') }}</th>
                     </tr>
                 </thead>
                 <tbody>

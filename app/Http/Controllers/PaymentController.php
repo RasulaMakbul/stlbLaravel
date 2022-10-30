@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Buyer;
 use App\Models\Payment;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -26,7 +27,8 @@ class PaymentController extends Controller
      */
     public function create()
     {
-        return view('payments.create');
+        $buyers = Buyer::pluck('name', 'id');
+        return view('payments.create',compact('buyers'));
     }
 
     /**
@@ -39,8 +41,8 @@ class PaymentController extends Controller
     {
         $rg = new Payment();
         $rg->date = $request->date;
-        $rg->buyer = $request->buyer;
-        $rg->totalDue = $request->totalDue;
+        $rg->buyer_id = $request->buyer_id;
+        $rg->total_due = $request->total_due;
         $rg->amount = $request->amount;
         $rg->remainder = $request->remainder;
         $rg->method = $request->method;
@@ -67,7 +69,8 @@ class PaymentController extends Controller
      */
     public function edit(Payment $payment)
     {
-        return view('payments.edit', compact('payment'));
+        $buyers = Buyer::pluck('name', 'id');
+        return view('payments.edit', compact('payment','buyers'));
     }
 
     /**
@@ -81,7 +84,7 @@ class PaymentController extends Controller
     {
         $requestData = ([
             'date' => $request->name,
-            'buyer' => $request->buyer,
+            'buyer_id' => $request->buyer_id,
             'total_due' => $request->total_due,
             'amount' => $request->amount,
             'remainder' => $request->remainder,

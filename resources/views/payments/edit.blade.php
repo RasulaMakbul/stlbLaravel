@@ -12,10 +12,7 @@
                 <div class="d-flex">
                     <x-layouts.input name="date" type="date" id="date" :value="old('date', $payment->date)" />
                     <div class="col-6">
-                        @php
-                            $dropItems = ['Dhaka Foam', 'Bengal Foam', 'Apex Foam', 'Sawdagor Chemicals'];
-                        @endphp
-                        <x-layouts.dropdowns name="buyer_id" title="Buyer" id="buyer" :dropItems="$dropItems"
+                        <x-layouts.dropdowns name="buyer_id" title="Buyer" id="buyer" :dropItems="$buyers"
                             :setItem="old('buyer_id', $payment->buyer_id)" option1="Select Buyer Name" />
                     </div>
                     <div class="col-6">
