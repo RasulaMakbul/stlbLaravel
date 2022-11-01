@@ -7,9 +7,9 @@
             <h1 class="h2">{{__('Trash')}}</h1>
             <div class="btn-toolbar mb-2 mb-md-0">
 
-                <a type="button" href="{{route('buyer.index')}}" class="btn btn-sm btn-outline-secondary">
+                <a type="button" href="{{route('payment.index')}}" class="btn btn-sm btn-outline-secondary">
                     <i class="fa-solid fa-list"></i>
-                    {{__('products')}}
+                    {{__('Payments')}}
                 </a>
             </div>
         </div>
@@ -19,24 +19,32 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">{{__('name')}}</th>
-                        <th scope="col">{{__('address')}}</th>
-                        <th scope="col">{{__('phone')}}</th>
-                        <th scope="col">{{__('Action')}}</th>
+                        <th scope="col">{{ __('Date') }}</th>
+                        <th scope="col">{{ __('Buyer') }}</th>
+                        <th scope="col">{{ __('Total Due(tk)') }}</th>
+                        <th scope="col">{{ __('Amount(Tk)') }}</th>
+                        <th scope="col">{{ __('Remainder(Tk)') }}</th>
+                        <th scope="col">{{ __('Method') }}</th>
+                        <th scope="col">{{ __('Action') }}</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($buyers as $buyer)
                     <tr>
-                        <td scope="row">{{ $loop->iteration }}</td>
-                        <td>{{ $buyer->name }}</td>
-                        <td>{{ $buyer->address }}</td>
-                        <td>{{ $buyer->phone }}</td>
+
+                        @foreach ($payment as $payment)
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $payment->date }}</td>
+                        <td>{{ $payment->buyer->name }}</td>
+                        <td>{{ $payment->total_due }}</td>
+                        <td>{{ $payment->amount }}</td>
+                        <td>{{ $payment->remainder }}</td>
+                        <td>{{ $payment->method }}</td>
 
 
                         <td>
-                            <a href="{{route('buyer.restore',$buyer->id)}}" class="link-info"><i class="fa-solid fa-arrow-rotate-left fs-5"></i></a>
-                            <form action="{{ route('buyer.delete', $buyer->id) }}" method="post" style="display:inline">
+                            <a href="{{route('payment.restore',$payment->id)}}" class="link-info"><i class="fa-solid fa-arrow-rotate-left fs-5"></i></a>
+                            <form action="{{ route('payment.delete', $payment->id) }}" method="post" style="display:inline">
                                 @csrf
                                 @method('delete')
                                 <button class="btn btn-sm link-danger" onclick="return confirm('Are you sure want to delete')" title="Permanent Delete"><i class="fa-solid fa-trash fs-5"></i></button>

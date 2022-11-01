@@ -20,26 +20,33 @@
                 <x-layouts.input name="phone" class="mt-2" title="Phone" type="text" id="phone" :value="old('phone')" />
                 <hr>
                 <div>
-                    <div id="multipleEntry">
+                    <div>
                         <div class="d-flex">
-                            <div class="col-3">
+                            <table class="table table-borderless">
+                                <tbody id="multipleEntry">
+                                    <tr>
+                                        <td>
+                                            <x-layouts.dropdowns name="product_id[]" title="Product" class="mt-2" id="productName" :dropItems="$products" :setItem="old('productName')" option1="Select Product" />
+                                        </td>
+                                        <td>
+                                            <x-layouts.input name="unitPrice[]" title="Unit Price" type="number" id="unitPrice" :value="111" />
+                                        </td>
+                                        <td>
+                                            <x-layouts.input name="quantity[]" title="Quantity" type="number" id="quantity" :value="old('quantity')" />
+                                        </td>
+                                        <td>
+                                            <x-layouts.input name="price[]" title="Price" type="number" id="price" :value="old('price')" />
+                                        </td>
+                                    </tr>
 
-                                <x-layouts.dropdowns name="product_id[]" title="Product" class="mt-2" id="productName" :dropItems="$products" :setItem="old('productName')" option1="Select Product" />
-                            </div>
-                            <div class="col-3">
-                                <x-layouts.input name="quantity[]" title="Quantity" type="number" id="quantity" :value="old('quantity')" />
-                            </div>
-                            <div class="col-3">
-                                <x-layouts.input name="unitPrice[]" title="Unit Price" type="number" id="unitPrice" :value="old('unitPrice')" />
-                            </div>
-                            <div class="col-3">
-                                <x-layouts.input name="price[]" title="Price" type="number" id="price" :value="old('price')" />
-                            </div>
+                                </tbody>
+
+                            </table>
+
                         </div>
                     </div>
                     <div class="col-sm-1 mb-3" id="controls">
                         <button class="btn btn-primary addNewBtn" type="button"><i class="fa-solid fa-plus"></i></button>
-                        <!-- <button type="button" id="addBtnTry" class="btn btn-secondary" onclick="addNewProduct();"></button> -->
                     </div>
 
                     <x-layouts.input name="subTotal" class="mt-2" title="Sub Total Price" type="number" id="subTotal" :value="old('subTotal')" />
@@ -53,7 +60,31 @@
 
 
             </form>
-            <script>
 
-            </script>
     </x-admins.master>
+
+    <div id="multipleEntry">
+        <div class="d-flex">
+            <table class="table table-borderless">
+                <tbody>
+                    <td>
+                        <x-layouts.dropdowns name="product_id[]" title="Product" class="mt-2" id="productName" :dropItems="$products" :setItem="old('productName')" option1="Select Product" />
+                    </td>
+                    <td>
+                        <x-layouts.input name="unitPrice[]" title="Unit Price" type="number" id="unitPrice" :value="111" />
+                    </td>
+                    <td>
+                        <x-layouts.input name="quantity[]" title="Quantity" type="number" id="quantity" :value="old('quantity')" />
+                    </td>
+                    <td>
+                        <x-layouts.input name="price[]" title="Price" type="number" id="price" :value="old('price')" />
+                    </td>
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+    <div class="col-sm-1 mb-3" id="controls">
+        <button class="btn btn-primary addNewBtn" type="button"><i class="fa-solid fa-plus"></i></button>
+    </div>

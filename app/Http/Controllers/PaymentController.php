@@ -28,7 +28,7 @@ class PaymentController extends Controller
     public function create()
     {
         $buyers = Buyer::pluck('name', 'id');
-        return view('payments.create',compact('buyers'));
+        return view('payments.create', compact('buyers'));
     }
 
     /**
@@ -70,7 +70,7 @@ class PaymentController extends Controller
     public function edit(Payment $payment)
     {
         $buyers = Buyer::pluck('name', 'id');
-        return view('payments.edit', compact('payment','buyers'));
+        return view('payments.edit', compact('payment', 'buyers'));
     }
 
     /**
@@ -83,7 +83,7 @@ class PaymentController extends Controller
     public function update(Request $request, Payment $payment)
     {
         $requestData = ([
-            'date' => $request->name,
+            'date' => $request->date,
             'buyer_id' => $request->buyer_id,
             'total_due' => $request->total_due,
             'amount' => $request->amount,
@@ -91,7 +91,7 @@ class PaymentController extends Controller
             'method' => $request->method
         ]);
         $payment->update($requestData);
-        return redirect()->route('payments.index');
+        return redirect()->route('payment.index');
     }
 
     /**
@@ -103,7 +103,7 @@ class PaymentController extends Controller
     public function destroy(Payment $payment)
     {
         $payment->delete();
-        return redirect()->route('payments.index');
+        return redirect()->route('payment.index');
     }
     public function trash()
     {
@@ -114,14 +114,14 @@ class PaymentController extends Controller
     {
         $payments = Payment::onlyTrashed()->find($id);
         $payments->restore();
-        return redirect()->route('payments.trash');
+        return redirect()->route('payment.trash');
     }
     public function delete($id)
     {
         try {
             $payments = Payment::onlyTrashed()->find($id);
             $payments->forceDelete();
-            return redirect()->route('payments.trash')->withMessage('Successfully Deleted');
+            return redirect()->route('payment.trash')->withMessage('Successfully Deleted');
         } catch (QueryException $e) {
             return redirect()->back()->withErrors($e->getMessage());
         }
