@@ -7,9 +7,9 @@
             <h1 class="h2">{{__('Trash')}}</h1>
             <div class="btn-toolbar mb-2 mb-md-0">
 
-                <a type="button" href="{{route('buyer.index')}}" class="btn btn-sm btn-outline-secondary">
+                <a type="button" href="{{route('sales.index')}}" class="btn btn-sm btn-outline-secondary">
                     <i class="fa-solid fa-list"></i>
-                    {{__('products')}}
+                    {{__('Sales List')}}
                 </a>
             </div>
         </div>
@@ -19,24 +19,22 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">{{__('name')}}</th>
-                        <th scope="col">{{__('address')}}</th>
-                        <th scope="col">{{__('phone')}}</th>
+                        <th scope="col">{{__('Date')}}</th>
+                        <th scope="col">{{__('Buyer')}}</th>
+                        <th scope="col">{{__('Sub total')}}</th>
                         <th scope="col">{{__('Action')}}</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($buyers as $buyer)
+                    @foreach($sales as $sale)
                     <tr>
-                        <td scope="row">{{ $loop->iteration }}</td>
-                        <td>{{ $buyer->name }}</td>
-                        <td>{{ $buyer->address }}</td>
-                        <td>{{ $buyer->phone }}</td>
-
-
+                        <td scope="row" class="align-middle">{{$loop->iteration}}</td>
+                        <td class="align-middle">{{$sale->date}}</td>
+                        <td class="align-middle">{{$sale->buyer->name}}</td>
+                        <td class="align-middle">{{$sale->subTotal}}</td>
                         <td>
-                            <a href="{{route('buyer.restore',$buyer->id)}}" class="link-info"><i class="fa-solid fa-arrow-rotate-left fs-5"></i></a>
-                            <form action="{{ route('buyer.delete', $buyer->id) }}" method="post" style="display:inline">
+                            <a href="{{route('sales.restore',$sale->id)}}" class="link-info"><i class="fa-solid fa-arrow-rotate-left fs-5"></i></a>
+                            <form action="{{ route('sales.delete', $sale->id) }}" method="post" style="display:inline">
                                 @csrf
                                 @method('delete')
                                 <button class="btn btn-sm link-danger" onclick="return confirm('Are you sure want to delete')" title="Permanent Delete"><i class="fa-solid fa-trash fs-5"></i></button>

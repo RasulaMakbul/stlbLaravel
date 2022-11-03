@@ -31,13 +31,11 @@ Route::middleware('auth')->group(function () {
     // Route::get('product/pdf', [ProductController::class, 'downloadPdf'])->name('product.pdf');
     Route::resource('product', ProductController::class);
 
-    // Route::get('/product/trash', [ProductController::class, 'trash'])->name('product.trash');
-    // Route::get('/product/{id}/restore', [ProductController::class, 'restore'])->name('product.restore');
-    // Route::delete('/product/{id}/delete', [ProductController::class, 'delete'])->name('product.delete');
-    // Route::get('product/pdf', [ProductController::class, 'downloadPdf'])->name('product.pdf');
-    //Route::resource('sales', SaleController::class);
 
 
+    Route::get('/sales/trash', [SaleController::class, 'trash'])->name('sales.trash');
+    Route::get('/sales/{id}/restore', [SaleController::class, 'restore'])->name('sales.restore');
+    Route::delete('/sales/{id}/delete', [SaleController::class, 'delete'])->name('sales.delete');
     Route::resource('sales', SaleController::class);
 
 

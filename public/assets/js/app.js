@@ -1,45 +1,40 @@
 const addNewBtn = document.querySelector(".addNewBtn");
 const multipleEntry = document.querySelector("#multipleEntry");
+let totalPrice = 0;
 
 addNewBtn.addEventListener("click", (e) => {
     const lastRow = multipleEntry.lastElementChild;
 
     let clone = lastRow.cloneNode(true);
+    const input = clone.querySelector(".qty");
+    input.addEventListener("change", () => {
+        calculateItemTotal(input);
+    });
     multipleEntry.appendChild(clone);
 });
 
-const qtyInput = document.querySelectorAll(".form-control");
+const qtyInput = multipleEntry.querySelectorAll(".qty");
 qtyInput.forEach((input) => {
     input.addEventListener("change", (e) => {
-        const qty = input.value;
-        const upInput =
-            input.parentElement.parentElement.previousElementSibling.value;
-
-        console.log(qty);
-        console.log(upInput);
+        calculateItemTotal(input);
     });
 });
 
 function calculateItemTotal(input) {
     const qty = input.value;
-    console.log(qty);
-    console.log(input.parentElement.previousElementSibling.value);
-    // const unitPrice = parseFloat(
-    //     input.parentElement.previousElementSibling.innerText
-    // );
-    // console.log(unitPrice);
-    // input.parentElement.nextElementSibling.innerText = itemTotalPrice;
+    const tdElement = input.parentElement.parentElement;
+    const upInput =
+        tdElement.previousElementSibling.firstElementChild.children[1].value;
+    //Div // td // previous td // div // input // value
+    const calc = parseInt(qty) * parseFloat(upInput);
+    tdElement.nextElementSibling.firstElementChild.children[1].value = calc;
+    console.log(calc);
+    totalPrice += calc;
+    calculateTotalPrice();
 }
-// const qtyInput = document.querySelectorAll('#quantity');
-// qtyInput.forEach(input => {
-//     input.addEventListener('change', () => {
 
-//         calculateItemTotal(input);
-//     });
-// });
-// console.dir(qtyInput);
+function calculateTotalPrice() {
+    const cartRows = document.querySelector("#price").children;
 
-// function calculateItemTotal(input) {
-//     console.log(input.value);
-//     console.log(input.parentElement.previousElementSibling.innerFloat)
-// }
+    document.getElementById("subTotal").value = totalPrice;
+}

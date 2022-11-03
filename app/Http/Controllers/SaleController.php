@@ -6,6 +6,7 @@ use App\Http\Requests\SaleRequest;
 use App\Models\Buyer;
 use App\Models\Product;
 use App\Models\Sale;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 class SaleController extends Controller
@@ -41,7 +42,7 @@ class SaleController extends Controller
      */
     public function store(SaleRequest $request)
     {
-        #dd($request->unitPrice);
+        dd($request->buyer);
         $requestData = ([
             'buyer_id' => $request->buyer,
             'date' => $request->date,
@@ -50,7 +51,6 @@ class SaleController extends Controller
             'subTotal' => $request->subTotal,
         ]);
         $sale = Sale::create($requestData);
-        #$sale->product()->attach([$request->productName, $request->quantity, $request->unitPrice, $request->price]);
 
         $saleData = [];
         for ($i = 0; $i < count($request->product_id); $i++) {
@@ -137,6 +137,30 @@ class SaleController extends Controller
      */
     public function destroy(Sale $sale)
     {
-        //
+        $sale->delete();
+        return redirect()->route('sales.index');
+    }
+
+    public function trash()
+    {
+        $sales = Sale::onlyTrashed()->get();
+
+        return view('sales.trash', compact('sales'));
+    }
+    public function restore($id)
+    {
+        $sales = Sale::onlyTrashed()->find($id);
+        $sales->restore();
+        return redirect()->route('sales.trash');
+    }
+    public function delete($id)
+    {
+        try {
+            $sales = Sale::onlyTrashed()->find($id);
+            $sales->forceDelete();
+            return redirect()->route('sales.trash')->withMessage('Successfully Deleted');
+        } catch (QueryException $e) {
+            return redirect()->back()->withErrors($e->getMessage());
+        }
     }
 }

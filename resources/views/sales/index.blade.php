@@ -9,7 +9,7 @@
                 <div class="btn-group me-2">
 
                     <button type="button" class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-table"></i> {{__('Excel')}}</button>
-                    <a type="button" href="{{route('buyer.trash')}}" class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-trash fs-5"></i> {{__('Trash')}}</a>
+                    <a type="button" href="{{route('sales.trash')}}" class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-trash fs-5"></i> {{__('Trash')}}</a>
 
                 </div>
                 <a type="button" href="{{route('sales.create')}}" class="btn btn-sm btn-outline-secondary">
@@ -41,23 +41,12 @@
                         <td>
 
 
-                            <table class="table table-light table-striped">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">{{__('product')}}</th>
-                                        <th scope="col">{{__('qty')}}</th>
-                                        <th scope="col">{{__('untPrice')}}</th>
-                                        <th scope="col">{{__('Total Price')}}</th>
-                                    </tr>
-                                </thead>
+                            <table class="table table-light">
+
                                 <tbody>
                                     @foreach($sale->products as $product)
                                     <tr>
-                                        <td scope="row">{{$loop->iteration}}</td>
                                         <td>{{$product->name}}</td>
-                                        <td>{{$product->pivot->quantity}}</td>
-                                        <td>{{$product->pivot->unitPrice}}</td>
                                         <td>{{$product->pivot->price}}</td>
 
                                     </tr>
@@ -75,7 +64,7 @@
                         <td class="align-middle">
                             <a href="{{route('sales.show',$sale->id)}}" class="link-info"><i class="fa-solid fa-eye fs-5 me-3"></i></a>
                             <a href="{{route('sales.edit',$sale->id)}}" class="link-info"><i class="fa-solid fa-pen-to-square fs-5 me-3"></i></a>
-                            <form action="#" method="post" style="display:inline">
+                            <form action="{{route('sales.destroy',$sale->id)}}" method="post" style="display:inline">
                                 @csrf
                                 @method('delete')
                                 <button class="btn btn-sm link-danger" onclick="return confirm('Are you sure want to delete')"><i class="fa-solid fa-trash fs-5"></i></button>
