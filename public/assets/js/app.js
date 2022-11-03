@@ -12,7 +12,8 @@ const qtyInput = document.querySelectorAll(".form-control");
 qtyInput.forEach((input) => {
     input.addEventListener("change", (e) => {
         const qty = input.value;
-        const upInput = input.parentElement.previousElementSibling.innerText;
+        const upInput =
+            input.parentElement.parentElement.previousElementSibling.value;
 
         console.log(qty);
         console.log(upInput);
