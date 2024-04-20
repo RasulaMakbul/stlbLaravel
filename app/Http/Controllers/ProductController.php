@@ -42,7 +42,6 @@ class ProductController extends Controller
             'name' => $request->name,
             'code' => $request->code,
             'origin' => $request->origin,
-            'stock' => $request->stock,
             'costing' => $request->costing,
             'price' => $request->price
         ]);
@@ -85,7 +84,6 @@ class ProductController extends Controller
             'name' => $request->name,
             'code' => $request->code,
             'origin' => $request->origin,
-            'stock' => $request->stock,
             'costing' => $request->costing,
             'price' => $request->price
         ]);

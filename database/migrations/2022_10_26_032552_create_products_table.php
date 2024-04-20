@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('origin')->nullable();
             $table->float('costing');
             $table->float('price');
-            $table->float('stock')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

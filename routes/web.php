@@ -4,6 +4,7 @@ use App\Http\Controllers\BuyerController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SaleController;
+use App\Http\Controllers\StockController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -30,6 +31,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/product/{id}/delete', [ProductController::class, 'delete'])->name('product.delete');
     // Route::get('product/pdf', [ProductController::class, 'downloadPdf'])->name('product.pdf');
     Route::resource('product', ProductController::class);
+
+    Route::resource('stock', StockController::class);
 
 
 
